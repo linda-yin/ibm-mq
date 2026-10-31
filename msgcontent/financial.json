@@ -1,0 +1,13 @@
+{
+  "messageId": "MSG20260928101530001",
+  "messageType": "BANK_DEPOSIT_WITHDRAWAL",
+  "timestamp": "2026-09-28 10:15:30.123",
+  "transactionType": "DEPOSIT或WITHDRAWAL",
+  "amount": "10000.00",
+  "currency": "CNY",
+  "accountNo": "6222020200000000001",
+  "accountName": "张三",
+  "accountType": "PERSONAL",
+  "bankCode": "ICBC",
+  "status": "SUCCESS"
+}

@@ -1,0 +1,60 @@
+# ============================================================
+# MQ Demo 统一配置文件
+# 使用方式：
+#   java -jar mqdemo-1.0.jar                     # 默认读取当前目录的 config.yml
+#   java -jar mqdemo-1.0.jar /path/to/config.yml # 指定配置文件路径
+#   java -Dconfig=/path/to/config.yml -jar mqdemo-1.0.jar
+# ============================================================
+
+# 运行模式（必填），可选值：
+#   send           - 点对点：发送消息
+#   receive        - 点对点：同步接收消息
+#   listen         - 点对点：异步监听接收消息
+#   request        - 请求/应答：请求客户端
+#   response       - 请求/应答：响应服务端
+#   publish        - JMS 发布订阅：发布消息
+#   subscribe      - JMS 发布订阅：订阅消息
+
+mode: send
+
+# MQ 连接配置（Client / Local 通用）
+mq:
+  connectionType: Client        # 连接方式：Client（客户端连接）或 Local（本地绑定连接）
+  queueManager: QM2             # 队列管理器名称
+  host: 10.10.92.33           # MQ 服务器地址（仅 Client 模式）
+  port: 10250                   # MQ 服务器端口（仅 Client 模式）
+                               # QM1：1419
+                               # QM2：10250
+  channel: SVR.CONN             # 通道名称（仅 Client 模式）
+  username: yinzm                    # 用户名（可选，留空表示不认证）
+  password: tongtech.111                    # 密码（可选）
+
+# 点对点队列配置（mode 为 send / receive / listen 时使用）
+queue:
+  name: LQ1                     # 队列名称
+  msgNum: 10                    # 消息数量（send 使用）
+  threadNum: 1                  # 线程数量
+  msgSize: 0                    # 消息大小（字节），0 表示默认 JSON 消息格式
+
+# 请求/应答配置（mode 为 request / response 时使用）
+request:
+  requestQueue: QL01            # 请求队列
+  replyQueue: QL02              # 应答队列
+  msgNum: 10                    # 消息数量（仅 request 使用）
+  threadNum: 2                  # 线程数量（request / response 使用）
+
+# JMS 发布订阅配置（mode 为 publish / subscribe 时使用）
+pubsub:
+  # /financial/deposit
+  # /financial/withdraw
+  # /financial/withdrawal/ATM
+  # /manufacture/import
+  # /manufacture/export
+  # /manufacture/export/USA
+  topic: /manufacture/#     # 主题（publish / subscribe 使用，主题名需包含 financial 或 manufacture）
+                            # 主题模糊匹配，如 /financial/# 表示匹配所有以 /financial 开头的主题，
+                            # /manufacture/* 表示匹配所有以 /manufacture 开头的主题
+                            #            （包括/manufacture/import和/manufacture/export,，但不包含子主题/manufacture/export/USA）
+  msgNum: 10                    # 发布的消息数量（仅 publish 使用）
+  subscriberId: subscriber-3    # 订阅者 ID（仅 subscribe 使用,不同的主题使用不同的 subscriberId 进行订阅）
+

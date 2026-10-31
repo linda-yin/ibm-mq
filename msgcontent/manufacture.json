@@ -1,0 +1,12 @@
+{
+  "messageId": "MSG20260928120000001",
+  "messageType": "GOODS_IMPORT_EXPORT",
+  "timestamp": "2026-09-28 12:00:00.000",
+  "tradeDirection": "EXPORT或IMPORT",
+  "productName": "智能手机",
+  "specification": "6.1英寸，128GB",
+  "brand": "apple",
+  "quantity": "1000",
+  "unitPrice": "200.00",
+  "currency": "USD"
+}

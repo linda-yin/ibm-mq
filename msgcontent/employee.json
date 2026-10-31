@@ -1,0 +1,9 @@
+{
+"id": "E10001",
+"name": "San Zhang",
+"gender": "male or female",
+"birthDate": "1990-05-15",
+"nationality": "CN",
+"salary": 5000,
+"maritalStatus": "married"
+}
